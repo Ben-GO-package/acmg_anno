@@ -1,0 +1,40 @@
+# build
+anno2xlsx
+MT/MT
+addDiseaseInfo2CNV/addDiseaseInfo2CNV
+addDiseaseInfo2SNV/addDiseaseInfo2SNV
+buildDb/buildDb
+snv2xlsx/snv2xlsx
+tier1tags/tier1tags
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Out of repo
+vendor/
+backup/
+
+# JetBrains GoLangd
+.idea
+
+test
+vep_autopvs1.demo.tsv.acmg*
+docs/ACMGSF.check.1.png
+docs/ACMGSF.check.2.png
+docs/ACMGSF.png
+docs/buildDb.png
+docs/metadata.yaml
+docs/result.md
+LICENSE
+.gitpod.yml
+.gitlab-ci.yml
