@@ -17,4 +17,5 @@
 | -tag      | string  | .tag              | tier1结果文件名加入额外标签，[prefix].Tier1[tag].xlsx                                       |
 
 
-## 处理逻辑
+## demo
+acmg_anno -snv vep_autopvs1.demo.tsv -acmg -autoPVS1 -tsv -json
