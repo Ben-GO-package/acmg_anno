@@ -41,7 +41,7 @@ func init() {
 	LogVersion(gitDescribe, buildStamp, golangVersion)
 
 	initAcmg2015()
-	fmt.Print("Finish ACMG Init : \n")
+	//fmt.Print("Finish ACMG Init : \n")
 }
 
 func main() {
@@ -49,6 +49,7 @@ func main() {
 	// anno
 	if *snv != "" {
 		var data = loadData()
+
 		fmt.Print("Finish Mutation Loading : ", len(data), "\n")
 		stats["Total"] = len(data)
 		for _, item := range data {
@@ -59,6 +60,7 @@ func main() {
 				log.Printf("cycle1 progress %d/%d", cycle1Count, len(data))
 			}
 		}
+		checktitle(data[0])
 		logTierStats(stats)
 		logTime("update info")
 

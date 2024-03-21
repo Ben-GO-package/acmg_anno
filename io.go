@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 
@@ -24,6 +25,32 @@ func loadData() (data []map[string]string) {
 	}
 	logTime("load anno file")
 	return
+}
+
+func checktitle(item map[string]string) {
+	log.Print("Start title Check as follow : \n")
+	var miss_title []string
+	var check_tag bool = false
+	for i, col := range InputTitle_check {
+		value, ok := item[col]
+		if ok {
+			log.Printf("col %d :%s : %s\n", i, col, value)
+		} else {
+			check_tag = true
+			log.Printf("col %d *****Miss***** :%s : %s\n", i, col, "Can't be found")
+			fmt.Printf("Miss input Info : \"%s\" \n", col)
+			miss_title = append(miss_title, col)
+		}
+	}
+	if check_tag {
+		fmt.Printf("Title check : Fail .\n")
+		log.Printf("Title check : Fail .\n")
+		fmt.Printf("Run acmg annotation without : \"%s\"\n\n", strings.Join(miss_title, "\",\""))
+		log.Printf("Run acmg annotation without : \"%s\"\n\n", strings.Join(miss_title, "\",\""))
+	} else {
+		fmt.Printf("Title check : Pass .\n\n")
+		log.Printf("Title check : Pass .\n\n")
+	}
 }
 
 // mapArray2tsv 将 []map[string]string 转换为 TSV 格式并写入到文件或标准输出流(未提供output文件名时)
