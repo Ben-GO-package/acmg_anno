@@ -128,11 +128,3 @@ func jsonMarshal(t interface{}) []byte {
 	simpleUtil.CheckErr(encoder.Encode(t))
 	return buffer.Bytes()
 }
-
-func selectMap(item map[string]string, keys []string) map[string]string {
-	var selectItem = make(map[string]string)
-	for _, k := range keys {
-		selectItem[k] = item[k]
-	}
-	return selectItem
-}

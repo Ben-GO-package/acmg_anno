@@ -21,9 +21,9 @@ import (
 func init() {
 	// 打印版本信息
 	gitDescribe := "https://gitlab.genomics.cn/bi-procreate/acmg"
-	buildStamp := "20240319"
+	buildStamp := "20240327"
 	golangVersion := "1.21.0"
-
+	fmt.Printf("acmg_anno      :'v1.0.0.1'\n")
 	Version(gitDescribe, buildStamp, golangVersion)
 
 	// 解析命令行参数
@@ -49,12 +49,15 @@ func main() {
 	// anno
 	if *snv != "" {
 		var data = loadData()
-
+		for col := range data[0] {
+			filterVariantsTitle = append(filterVariantsTitle, col)
+		}
+		filterVariantsTitle = append(filterVariantsTitle, "autoRuleName", "自动化判断")
 		fmt.Print("Finish Mutation Loading : ", len(data), "\n")
 		stats["Total"] = len(data)
 		for _, item := range data {
 			annotate1(item)
-			tier1Data = append(tier1Data, selectMap(item, filterVariantsTitle))
+			tier1Data = append(tier1Data, item)
 			cycle1Count++
 			if cycle1Count%20000 == 0 {
 				log.Printf("cycle1 progress %d/%d", cycle1Count, len(data))
@@ -69,7 +72,7 @@ func main() {
 	if *outTsv {
 		// 输出特定字段格式的tier1.tsv
 		mapArray2tsv(tier1Data, filterVariantsTitle, *prefix+".acmg.tsv")
-		var filterVariantsTitle_import = []string{"SampleID", "#Chr", "Start", "Stop", "Ref", "Call", "Transcript", "cHGVS", "pHGVS", "autoRuleName", "自动化判断"}
+		var filterVariantsTitle_import = []string{"#Chr", "Start", "Stop", "Ref", "Call", "Transcript", "cHGVS", "pHGVS", "autoRuleName", "自动化判断"}
 		mapArray2tsv(tier1Data, filterVariantsTitle_import, *prefix+".acmg.temp.tsv")
 	}
 	// 输出json

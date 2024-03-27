@@ -6,8 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/liserjrqlxue/goUtil/textUtil"
 )
 
 // flag
@@ -16,11 +14,6 @@ var (
 		"acmgDb",
 		"",
 		"config file for ACMG database (default : cfg\\acmg.db.cfg)",
-	)
-	fianl_title = flag.String(
-		"fianl_title",
-		"",
-		"config file for final title of result (default : cfg\\final_result_title.cfg)",
 	)
 	snv = flag.String(
 		"snv",
@@ -82,9 +75,5 @@ func checkFlag() {
 	// 设置ACMG数据库路径
 	if *acmgDb == "" {
 		*acmgDb = filepath.Join(cfgPath, "acmg.db.cfg")
-	}
-	if *fianl_title == "" {
-		// 解析最终输出字段
-		filterVariantsTitle = textUtil.File2Array(filepath.Join(cfgPath, "final_result_title.cfg"))
 	}
 }
