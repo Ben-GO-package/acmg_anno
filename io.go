@@ -27,30 +27,53 @@ func loadData() (data []map[string]string) {
 	return
 }
 
-func checktitle(item map[string]string) {
-	log.Print("Start title Check as follow : \n")
+func check_transverTitle_relation_map(coltitles []string) {
+	allTitleCheck := false
 	var miss_title []string
-	var check_tag bool = false
-	for i, col := range InputTitle_check {
-		value, ok := item[col]
-		if ok {
-			log.Printf("col %d :%s : %s\n", i, col, value)
-		} else {
-			check_tag = true
-			log.Printf("col %d *****Miss***** :%s : %s\n", i, col, "Can't be found")
-			fmt.Printf("Miss input Info : \"%s\" \n", col)
-			miss_title = append(miss_title, col)
+	index := 1
+	for acmg_title, input_title := range transverTitle_relation_map {
+		index++
+		check_tag := true
+		for _, coltitle := range coltitles {
+			// if acmg_title == coltitle {
+			// 	fmt.Printf("Pre input Title check %d : %s is found .\n", index, coltitle)
+			// 	delete(transverTitle_relation_map, acmg_title)
+			// 	check_tag = false
+			// 	break
+			// }
+			if input_title == coltitle {
+				log.Printf("Pre input Title check %d :  pass : %s is found .\n", index, coltitle)
+				fmt.Printf("Pre input Title check %d : \033[32m %s is found .\033[0m\n", index, coltitle)
+				check_tag = false
+			}
+		}
+		if check_tag {
+			allTitleCheck = true
+			delete(transverTitle_relation_map, acmg_title)
+			miss_title = append(miss_title, acmg_title)
+			log.Printf("Pre input Title check %d :  unpass %s is not found .\n", index, acmg_title)
+			fmt.Printf("Pre input Title check %d :\033[31m %s is not found .\033[0m\n", index, acmg_title)
+
 		}
 	}
-	if check_tag {
-		fmt.Printf("Title check : Fail .\n")
+	if allTitleCheck {
+		fmt.Printf("\033[31mTitle check : Fail .\033[0m\n")
 		log.Printf("Title check : Fail .\n")
-		fmt.Printf("Run acmg annotation without : \"%s\"\n\n", strings.Join(miss_title, "\",\""))
-		log.Printf("Run acmg annotation without : \"%s\"\n\n", strings.Join(miss_title, "\",\""))
+		fmt.Printf("\033[31mWarning!!!!! Run acmg annotation without : \"%s\"\033[0m\n", strings.Join(miss_title, "\",\""))
+		log.Printf("Warning!!!!! Run acmg annotation without : \"%s\"\n", strings.Join(miss_title, "\",\""))
 	} else {
 		fmt.Printf("Title check : Pass .\n\n")
 		log.Printf("Title check : Pass .\n\n")
 	}
+
+}
+func transverTitle(raw_item map[string]string) map[string]string {
+	item := make(map[string]string)
+	for key, value := range transverTitle_relation_map {
+		item[key] = raw_item[value]
+	}
+	return item
+
 }
 
 // mapArray2tsv 将 []map[string]string 转换为 TSV 格式并写入到文件或标准输出流(未提供output文件名时)

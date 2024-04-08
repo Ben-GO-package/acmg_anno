@@ -50,20 +50,26 @@ func main() {
 	if *snv != "" {
 		var data = loadData()
 		for col := range data[0] {
-			filterVariantsTitle = append(filterVariantsTitle, col)
+			finalOutputTitle = append(finalOutputTitle, col)
 		}
-		filterVariantsTitle = append(filterVariantsTitle, "autoRuleName", "自动化判断")
+		check_transverTitle_relation_map(finalOutputTitle)
+		finalOutputTitle = append(finalOutputTitle, "autoRuleName", "自动化判断")
 		fmt.Print("Finish Mutation Loading : ", len(data), "\n")
 		stats["Total"] = len(data)
-		for _, item := range data {
+		for _, raw_item := range data {
+			item := transverTitle(raw_item)
 			annotate1(item)
-			tier1Data = append(tier1Data, item)
+			raw_item["autoRuleName"] = item["autoRuleName"]
+			raw_item["自动化判断"] = item["自动化判断"]
+			WholeResultData = append(WholeResultData, raw_item)
+			item["Ref"] = raw_item["Ref"]
+			item["Call"] = raw_item["Call"]
+			ImporttempData = append(ImporttempData, item)
 			cycle1Count++
 			if cycle1Count%20000 == 0 {
 				log.Printf("cycle1 progress %d/%d", cycle1Count, len(data))
 			}
 		}
-		checktitle(data[0])
 		logTierStats(stats)
 		logTime("update info")
 
@@ -71,15 +77,15 @@ func main() {
 	// Update By Liu.Bo @  2024/03/15 15:22:30 增加tsv格式输出，为便于观察增加*import.tsv仅输出两个最终需求字段(autoRuleName	自动化判断)确保后续精简
 	if *outTsv {
 		// 输出特定字段格式的tier1.tsv
-		mapArray2tsv(tier1Data, filterVariantsTitle, *prefix+".acmg.tsv")
+		mapArray2tsv(WholeResultData, finalOutputTitle, *prefix+".acmg.tsv")
 		var filterVariantsTitle_import = []string{"#Chr", "Start", "Stop", "Ref", "Call", "Transcript", "cHGVS", "pHGVS", "autoRuleName", "自动化判断"}
-		mapArray2tsv(tier1Data, filterVariantsTitle_import, *prefix+".acmg.temp.tsv")
+		mapArray2tsv(ImporttempData, filterVariantsTitle_import, *prefix+".acmg.temp.tsv")
 	}
 	// 输出json
 	if *outJson {
 		if *snv != "" {
 			// hash array 输出 json list
-			mapArray2jsonList(tier1Data, *prefix+".acmg.json")
+			mapArray2jsonList(WholeResultData, *prefix+".acmg.json")
 		}
 	}
 }

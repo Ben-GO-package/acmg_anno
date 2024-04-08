@@ -28,7 +28,7 @@ backup/
 .idea
 
 test
-vep_autopvs1.demo.tsv.acmg*
+vep_autopvs1.demo.tsv*
 docs/ACMGSF.check.1.png
 docs/ACMGSF.check.2.png
 docs/ACMGSF.png
@@ -38,3 +38,5 @@ docs/result.md
 LICENSE
 .gitpod.yml
 .gitlab-ci.yml
+PPDB.hg19.vpp.pvs1*
+input.demo.tsv.acmg*
