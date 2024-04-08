@@ -22,8 +22,6 @@ func loadData() (data []map[string]string, title []string) {
 		} else {
 			d, t := textUtil.File2MapArray(f, "\t", isComment)
 			title = t
-			fmt.Printf("输入列 loadData 顺序: %v\n", title)
-
 			data = append(data, d...)
 		}
 	}

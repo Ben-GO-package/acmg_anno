@@ -110,6 +110,43 @@ var transverTitle_relation_map = map[string]string{
 	"Strand":                     "STRAND",
 }
 
+var TempOutputTitle = []string{
+	"#Chr", "Start", "Stop", "Ref", "Call",
+	"Feature",
+	"cHGVS",
+	"pHGVS",
+	"autoRuleName", "自动化判断",
+	"pHGVS1",
+	"Symbol",
+	"Consequence",
+	"RepeatTag",
+	"VarType",
+	"GERP_RS",
+	"PhyloP_Vertebrates",
+	"PhyloP_Placental_Mammals",
+	"rf_score",
+	"ada_score",
+	"SIFT_pred",
+	"Polyphen2_HVAR_Pred",
+	"MutationTaster_pred",
+	"Condel",
+	"SpliceAI_Pred",
+	"ExAC_AC_Hom",
+	"GnomAD_nhomalt",
+	"Inheritance",
+	"Interpro_domain",
+	"AutoPVS1_Adjusted_Strength",
+	"MutationName",
+	"gwasCatalog_orOrBeta",
+	"STRAND",
+	"ESP6500_AF",
+	"AF",
+	"ExAC_AF",
+	"ExAC_AF_EAS",
+	"GnomAD_AF",
+	"GnomAD_AF_eas",
+}
+
 // log
 var cycle1Count int
 

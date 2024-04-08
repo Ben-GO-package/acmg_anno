@@ -60,9 +60,7 @@ func main() {
 			raw_item["autoRuleName"] = item["autoRuleName"]
 			raw_item["自动化判断"] = item["自动化判断"]
 			WholeResultData = append(WholeResultData, raw_item)
-			item["Ref"] = raw_item["Ref"]
-			item["Call"] = raw_item["Call"]
-			ImporttempData = append(ImporttempData, item)
+
 			cycle1Count++
 			if cycle1Count%20000 == 0 {
 				log.Printf("cycle1 progress %d/%d", cycle1Count, len(data))
@@ -76,8 +74,8 @@ func main() {
 	if *outTsv {
 		// 输出特定字段格式的tier1.tsv
 		mapArray2tsv(WholeResultData, finalOutputTitle, *prefix+".acmg.tsv")
-		var filterVariantsTitle_import = []string{"#Chr", "Start", "Stop", "Ref", "Call", "Transcript", "cHGVS", "pHGVS", "autoRuleName", "自动化判断"}
-		mapArray2tsv(ImporttempData, filterVariantsTitle_import, *prefix+".acmg.temp.tsv")
+		//TempOutputTitle = append(TempOutputTitle, "Ref", "Call", "autoRuleName", "自动化判断")
+		mapArray2tsv(WholeResultData, TempOutputTitle, *prefix+".acmg.temp.tsv")
 	}
 	// 输出json
 	if *outJson {
