@@ -13,13 +13,17 @@ import (
 	"github.com/liserjrqlxue/goUtil/textUtil"
 )
 
-func loadData() (data []map[string]string) {
+func loadData() (data []map[string]string, title []string) {
 	for _, f := range snvs {
 		if isGz.MatchString(f) {
-			d, _ := textUtil.Gz2MapArray(f, "\t", isComment)
+			d, t := textUtil.Gz2MapArray(f, "\t", isComment)
+			title = t
 			data = append(data, d...)
 		} else {
-			d, _ := textUtil.File2MapArray(f, "\t", isComment)
+			d, t := textUtil.File2MapArray(f, "\t", isComment)
+			title = t
+			fmt.Printf("输入列 loadData 顺序: %v\n", title)
+
 			data = append(data, d...)
 		}
 	}

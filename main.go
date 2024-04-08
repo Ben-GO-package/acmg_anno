@@ -48,10 +48,8 @@ func main() {
 	defer simpleUtil.DeferClose(logFile)
 	// anno
 	if *snv != "" {
-		var data = loadData()
-		for col := range data[0] {
-			finalOutputTitle = append(finalOutputTitle, col)
-		}
+		var data, title = loadData()
+		finalOutputTitle = title
 		check_transverTitle_relation_map(finalOutputTitle)
 		finalOutputTitle = append(finalOutputTitle, "autoRuleName", "自动化判断")
 		fmt.Print("Finish Mutation Loading : ", len(data), "\n")
