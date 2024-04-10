@@ -59,6 +59,12 @@ func main() {
 			annotate1(item)
 			raw_item["autoRuleName"] = item["autoRuleName"]
 			raw_item["自动化判断"] = item["自动化判断"]
+			raw_item["GERP_RS_pred"] = item["GERP++_RS_pred"]
+			raw_item["dbscSNV_ADA_pred"] = item["dbscSNV_ADA_pred"]
+			raw_item["dbscSNV_RF_pred"] = item["dbscSNV_RF_pred"]
+			raw_item["PhyloP_Vertebrates_Pred"] = item["PhyloP Vertebrates Pred"]
+			raw_item["PhyloP_Placental_Mammals_Pred"] = item["PhyloP Placental Mammals Pred"]
+
 			for _, col := range TempOutputTitle {
 				_, exists := raw_item[col]
 				temp_value, temp_exists := item[col]
@@ -80,6 +86,7 @@ func main() {
 	// Update By Liu.Bo @  2024/03/15 15:22:30 增加tsv格式输出，为便于观察增加*import.tsv仅输出两个最终需求字段(autoRuleName	自动化判断)确保后续精简
 	if *outTsv {
 		// 输出特定字段格式的tier1.tsv
+		finalOutputTitle = append(finalOutputTitle, "dbscSNV_ADA_pred", "dbscSNV_RF_pred", "GERP_RS_pred", "PhyloP_Vertebrates_Pred", "PhyloP_Placental_Mammals_Pred")
 		mapArray2tsv(WholeResultData, finalOutputTitle, *prefix+".acmg.tsv")
 		//TempOutputTitle = append(TempOutputTitle, "Ref", "Call", "autoRuleName", "自动化判断")
 		mapArray2tsv(WholeResultData, TempOutputTitle, *prefix+".acmg.temp.tsv")
