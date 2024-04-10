@@ -59,10 +59,17 @@ func main() {
 			annotate1(item)
 			raw_item["autoRuleName"] = item["autoRuleName"]
 			raw_item["自动化判断"] = item["自动化判断"]
+			for _, col := range TempOutputTitle {
+				_, exists := raw_item[col]
+				temp_value, temp_exists := item[col]
+				if !exists && temp_exists {
+					raw_item[col] = temp_value
+				}
+			}
 			WholeResultData = append(WholeResultData, raw_item)
 
 			cycle1Count++
-			if cycle1Count%20000 == 0 {
+			if cycle1Count%1000 == 0 {
 				log.Printf("cycle1 progress %d/%d", cycle1Count, len(data))
 			}
 		}

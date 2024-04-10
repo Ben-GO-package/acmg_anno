@@ -90,7 +90,7 @@ var transverTitle_relation_map = map[string]string{
 	"dbscSNV_RF_SCORE":           "rf_score",
 	"dbscSNV_ADA_SCORE":          "ada_score",
 	"SIFT Pred":                  "SIFT_pred",
-	"Polyphen2_HVAR_Pred":        "Polyphen2_HVAR_Pred", //:"BP4 PP3",
+	"Polyphen2 HVAR Pred":        "Polyphen2_HVAR_Pred", //:"BP4 PP3",
 	"MutationTaster Pred":        "MutationTaster_pred", //:"BP4 PP3",
 	"Ens Condel Pred":            "Condel",              //:"BP4  PP3",
 	"SpliceAI Pred":              "SpliceAI_Pred",       //:"BP4 BP7 PP3",

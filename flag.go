@@ -6,6 +6,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/liserjrqlxue/goUtil/textUtil"
 )
 
 // flag
@@ -29,6 +31,11 @@ var (
 		"log",
 		"",
 		"output log to log.log ( prefix.acmg.log)",
+	)
+	temp_title = flag.String(
+		"temp_title",
+		"",
+		"config file for final title of result (default : cfg\\final_result_title.cfg)",
 	)
 )
 
@@ -76,4 +83,9 @@ func checkFlag() {
 	if *acmgDb == "" {
 		*acmgDb = filepath.Join(cfgPath, "acmg.db.cfg")
 	}
+	if *temp_title != "" {
+		// 解析最终输出字段
+		TempOutputTitle = textUtil.File2Array(*temp_title)
+	}
+
 }
