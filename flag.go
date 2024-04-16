@@ -49,9 +49,18 @@ var (
 	autoPVS1 = flag.Bool(
 		"autoPVS1",
 		false,
-		"if use autoPVS1 for acmg",
+		"if use autoPVS1 for acmg (Default false)",
 	)
-
+	runPM1 = flag.Bool(
+		"runPM1",
+		false,
+		"if use evidence of PM1 for acmg (Default false)",
+	)
+	outpred = flag.Bool(
+		"outpred",
+		false,
+		"if output pred information in evidence ( dbscSNV_ADA_pred, dbscSNV_RF_pred, GERP++_RS_pred, PhyloP Vertebrates Pred, PhyloP Placental Mammals Pred)",
+	)
 	outTsv = flag.Bool(
 		"tsv",
 		true,

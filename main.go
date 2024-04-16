@@ -52,7 +52,11 @@ func main() {
 		finalOutputTitle = title
 		check_transverTitle_relation_map(finalOutputTitle)
 		finalOutputTitle = append(finalOutputTitle, "autoRuleName", "自动化判断")
+		if *outpred {
+			finalOutputTitle = append(finalOutputTitle, "dbscSNV_ADA_pred", "dbscSNV_RF_pred", "GERP_RS_pred", "PhyloP_Vertebrates_Pred", "PhyloP_Placental_Mammals_Pred")
+		}
 		fmt.Print("Finish Mutation Loading : ", len(data), "\n")
+
 		stats["Total"] = len(data)
 		for _, raw_item := range data {
 			item := transverTitle(raw_item)
@@ -86,9 +90,7 @@ func main() {
 	// Update By Liu.Bo @  2024/03/15 15:22:30 增加tsv格式输出，为便于观察增加*import.tsv仅输出两个最终需求字段(autoRuleName	自动化判断)确保后续精简
 	if *outTsv {
 		// 输出特定字段格式的tier1.tsv
-		finalOutputTitle = append(finalOutputTitle, "dbscSNV_ADA_pred", "dbscSNV_RF_pred", "GERP_RS_pred", "PhyloP_Vertebrates_Pred", "PhyloP_Placental_Mammals_Pred")
 		mapArray2tsv(WholeResultData, finalOutputTitle, *prefix+".acmg.tsv")
-		//TempOutputTitle = append(TempOutputTitle, "Ref", "Call", "autoRuleName", "自动化判断")
 		mapArray2tsv(WholeResultData, TempOutputTitle, *prefix+".acmg.temp.tsv")
 	}
 	// 输出json

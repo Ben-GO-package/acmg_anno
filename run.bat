@@ -8,4 +8,4 @@ SET GOOS=linux
 SET GOARCH=amd64
 go build -o acmg_anno acmg.go   flag.go   global.go  io.go log.go  main.go 
 
-.\acmg_anno.exe -snv PPDB.hg19.vpp.pvs1.tsv -acmg -autoPVS1 -tsv -json
+.\acmg_anno.exe -snv test_data.tsv -acmg -autoPVS1 -tsv -json -outpred  -runPM1

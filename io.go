@@ -121,7 +121,7 @@ func mapArray2tsv(data []map[string]string, output_columns []string, output stri
 				if i > 0 {
 					_, _ = writer.Write([]byte("\t"))
 				}
-				fit_value := strings.Replace(value, "\n", "^", -1)
+				fit_value := strings.Replace(value, "\n", ";", -1)
 				_, _ = writer.WriteString(fit_value)
 			} else {
 				// 若列不存在于item中，可以填充默认值或者错误信息

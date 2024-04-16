@@ -128,27 +128,8 @@ func UpdateSnv(item map[string]string) {
 }
 
 // UpdateFunction convert intron to [splice+10,splice-10,splice+20,splice-20]
-func UpdateFunction(item map[string]string) {
-	item["Function"] = updateFunction(item["Function"], item["cHGVS"])
-}
 
 var chgvsReg = regexp.MustCompile(`c\.\d+([+-])(\d+)`)
-
-func updateFunction(function, cHGVS string) string {
-	if function == "intron" {
-		var matches = chgvsReg.FindStringSubmatch(cHGVS)
-		if matches != nil {
-			var strand = matches[1]
-			var distance = stringsUtil.Atoi(matches[2])
-			if distance <= 10 {
-				return "splice" + strand + "10"
-			} else if distance <= 20 {
-				return "splice" + strand + "20"
-			}
-		}
-	}
-	return function
-}
 
 // AFlist default AF list for check
 var AFlist = []string{

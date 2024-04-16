@@ -47,6 +47,7 @@ var InputTitle_check = []string{
 	"Ens Condel Pred",
 	"Function",
 	"Gene Symbol",
+	"entrez_id",
 	"GERP++_RS_pred",
 	"GWASdb_or",
 	"Interpro_domain",
@@ -108,6 +109,7 @@ var transverTitle_relation_map = map[string]string{
 	"MutationName":               "MutationName",
 	"GWASdb_or":                  "gwasCatalog_orOrBeta",
 	"Strand":                     "STRAND",
+	"entrez_id":                  "Gene",
 }
 
 var TempOutputTitle = []string{
@@ -118,6 +120,7 @@ var TempOutputTitle = []string{
 	"autoRuleName", "自动化判断",
 	"pHGVS1",
 	"Symbol",
+	"entrez_id",
 	"Consequence",
 	"RepeatTag",
 	"VarType",
