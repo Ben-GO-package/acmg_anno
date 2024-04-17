@@ -30,7 +30,7 @@ func annotate1(item map[string]string) {
 	// ues acmg of go
 	if *acmg {
 		acmg2015.AddEvidences(item, *autoPVS1, *runPM1)
-		item["自动化判断"] = acmg2015.PredACMG2015(item, *autoPVS1, *runPM1)
+		item["automated_judgment"] = acmg2015.PredACMG2015(item, *autoPVS1, *runPM1)
 	}
 
 	anno.UpdateSnv(item)

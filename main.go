@@ -23,7 +23,7 @@ func init() {
 	gitDescribe := "https://gitlab.genomics.cn/bi-procreate/acmg"
 	buildStamp := "20240327"
 	golangVersion := "1.21.0"
-	fmt.Printf("acmg_anno      :'v1.0.0.1'\n")
+	fmt.Printf("acmg_anno      :'v1.0.0.2'\n")
 	Version(gitDescribe, buildStamp, golangVersion)
 
 	// 解析命令行参数
@@ -51,7 +51,7 @@ func main() {
 		var data, title = loadData()
 		finalOutputTitle = title
 		check_transverTitle_relation_map(finalOutputTitle)
-		finalOutputTitle = append(finalOutputTitle, "autoRuleName", "自动化判断")
+		finalOutputTitle = append(finalOutputTitle, "autoRuleName", "automated_judgment")
 		if *outpred {
 			finalOutputTitle = append(finalOutputTitle, "dbscSNV_ADA_pred", "dbscSNV_RF_pred", "GERP_RS_pred", "PhyloP_Vertebrates_Pred", "PhyloP_Placental_Mammals_Pred")
 		}
@@ -62,7 +62,7 @@ func main() {
 			item := transverTitle(raw_item)
 			annotate1(item)
 			raw_item["autoRuleName"] = item["autoRuleName"]
-			raw_item["自动化判断"] = item["自动化判断"]
+			raw_item["automated_judgment"] = item["automated_judgment"]
 			raw_item["GERP_RS_pred"] = item["GERP++_RS_pred"]
 			raw_item["dbscSNV_ADA_pred"] = item["dbscSNV_ADA_pred"]
 			raw_item["dbscSNV_RF_pred"] = item["dbscSNV_RF_pred"]
