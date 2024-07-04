@@ -49,12 +49,12 @@ var (
 	autoPVS1 = flag.Bool(
 		"autoPVS1",
 		false,
-		"if use autoPVS1 for acmg (Default false)",
+		"if use autoPVS1 for acmg ( fixed value: true @20240703 )",
 	)
 	runPM1 = flag.Bool(
 		"runPM1",
 		false,
-		"if use evidence of PM1 for acmg (Default false)",
+		"if use evidence of PM1 for acmg ( fixed value: false @20240703 )",
 	)
 	outpred = flag.Bool(
 		"outpred",
@@ -96,5 +96,7 @@ func checkFlag() {
 		// 解析最终输出字段
 		TempOutputTitle = textUtil.File2Array(*temp_title)
 	}
+	*runPM1 = false
+	*autoPVS1 = true
 
 }

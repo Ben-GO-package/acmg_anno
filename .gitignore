@@ -38,6 +38,5 @@ docs/result.md
 LICENSE
 .gitpod.yml
 .gitlab-ci.yml
-PPDB.hg19.vpp.pvs1*
-input.demo.tsv.acmg*
+
 test_data.tsv*

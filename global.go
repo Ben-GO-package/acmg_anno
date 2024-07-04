@@ -73,14 +73,15 @@ var InputTitle_check = []string{
 }
 
 var transverTitle_relation_map = map[string]string{
-	"ESP6500 AF":                 "ESP6500_AF",    // :"BA1 ;BS1、BS2、 PM2、PVS1"
-	"1000G AF":                   "AF",            //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"ExAC AF":                    "ExAC_AF",       //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"ExAC EAS AF":                "ExAC_AF_EAS",   //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"GnomAD AF":                  "GnomAD_AF",     //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"GnomAD EAS AF":              "GnomAD_AF_eas", //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"Transcript":                 "Feature",
-	"cHGVS":                      "cHGVS",
+	"ESP6500 AF":                 "ESP6500_AF",       // :"BA1 ;BS1、BS2、 PM2、PVS1"
+	"1000G AF":                   "AF",               //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"ExAC AF":                    "ExAC_AF",          //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"ExAC EAS AF":                "ExAC_AF_EAS",      //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"GnomAD AF":                  "GnomAD_AF",        //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"GnomAD EAS AF":              "GnomAD_AF_eas",    //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"Transcript":                 "Feature",          //PS1 ; PM5
+	"Protein_position":           "Protein_position", //PS1 ; PM5
+	"cHGVS":                      "cHGVS",            //PS1 ; PM5
 	"Function":                   "Consequence",
 	"Gene Symbol":                "Symbol",
 	"RepeatTag":                  "RepeatTag",
@@ -104,7 +105,7 @@ var transverTitle_relation_map = map[string]string{
 	"Start":                      "Start",
 	"Stop":                       "Stop",
 	"pHGVS":                      "pHGVS",
-	"pHGVS1":                     "pHGVS1",
+	"pHGVS1":                     "pHGVS1",                     //PS1 ; PM5
 	"AutoPVS1 Adjusted Strength": "AutoPVS1_Adjusted_Strength", //:"PP3",
 	"MutationName":               "MutationName",
 	"GWASdb_or":                  "gwasCatalog_orOrBeta",
