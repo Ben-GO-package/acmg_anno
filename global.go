@@ -38,6 +38,7 @@ var transEN = map[string]string{
 }
 
 var InputTitle_check = []string{
+	"Uploaded_variation",
 	"AutoPVS1 Adjusted Strength",
 	"cHGVS",
 	"cHGVS_org",
@@ -54,7 +55,6 @@ var InputTitle_check = []string{
 	"ModeInheritance",
 	"MutationName",
 	"MutationTaster Pred",
-	"pfamId",
 	"pHGVS",
 	"pHGVS1",
 	"PhyloP Placental Mammals Pred",
@@ -73,6 +73,7 @@ var InputTitle_check = []string{
 }
 
 var transverTitle_relation_map = map[string]string{
+	"Uploaded_variation":         "Uploaded_variation",
 	"ESP6500 AF":                 "ESP6500_AF",       // :"BA1 ;BS1、BS2、 PM2、PVS1"
 	"1000G AF":                   "AF",               //:"BA1 ;BS1、BS2、 PM2、PVS1",
 	"ExAC AF":                    "ExAC_AF",          //:"BA1 ;BS1、BS2、 PM2、PVS1",
@@ -100,7 +101,6 @@ var transverTitle_relation_map = map[string]string{
 	"GnomAD HomoAlt Count":       "GnomAD_nhomalt",      //:"BS2",
 	"ModeInheritance":            "Inheritance",
 	"Interpro_domain":            "Interpro_domain",
-	"pfamId":                     "无法注释,PM1要弃用这个字段应该没用了",
 	"#Chr":                       "#Chr",
 	"Start":                      "Start",
 	"Stop":                       "Stop",
