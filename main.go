@@ -6,6 +6,7 @@ import (
 	"log"
 	_ "net/http/pprof"
 	"os"
+	"time"
 
 	"github.com/liserjrqlxue/goUtil/simpleUtil"
 )
@@ -20,10 +21,13 @@ import (
 // 6. 处理产品英文列表，并标记当前产品是否为英文产品。
 func init() {
 	// 打印版本信息
+	now := time.Now()
+	year, month, day := now.Date()
+	hour, minute, _ := now.Clock()
 	gitDescribe := "https://gitlab.genomics.cn/bi-procreate/acmg"
-	buildStamp := "20240327"
+	buildStamp := fmt.Sprintf("%d-%02d-%02d %02d:%02d", year, month, day, hour, minute)
 	golangVersion := "1.21.0"
-	fmt.Printf("acmg_anno      :'v1.0.0.2'\n")
+	fmt.Printf("acmg_anno      :'v1.0.1.0'\n")
 	Version(gitDescribe, buildStamp, golangVersion)
 
 	// 解析命令行参数
