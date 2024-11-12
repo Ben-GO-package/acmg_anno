@@ -1,7 +1,6 @@
 package anno
 
 import (
-	"strconv"
 	"strings"
 )
 
@@ -45,15 +44,29 @@ func UpdateAutoRule(item map[string]string) {
 		autoRuleScroe += 1
 	}
 	for _, key := range autoRuleKey {
-		if item[key] != "" && item[key] != "0" {
+		switch item[key] {
+		case "1":
 			autoRuleName = append(autoRuleName, key)
 			autoIsChecked = append(autoIsChecked, "1")
-			autoRuleScroe += autoRuleScores[key]
+			//autoRuleScroe += autoRuleScores[key]
+		case "Supporting":
+			autoRuleName = append(autoRuleName, key+"_Supporting")
+			autoIsChecked = append(autoIsChecked, "1")
+			//autoRuleScroe += autoRuleScores[key]
+		case "Moderate":
+			autoRuleName = append(autoRuleName, key+"_Moderate")
+			autoIsChecked = append(autoIsChecked, "1")
+			//autoRuleScroe += autoRuleScores[key]
+		case "Strong":
+			autoRuleName = append(autoRuleName, key+"_Strong")
+			autoIsChecked = append(autoIsChecked, "1")
+			//autoRuleScroe += autoRuleScores[key]
+
 		}
 	}
 	item["autoRuleName"] = strings.Join(autoRuleName, "\n")
 	item["autoIsChecked"] = strings.Join(autoIsChecked, "\n")
-	item["autoRuleScore"] = strconv.Itoa(autoRuleScroe)
+	//item["autoRuleScore"] = strconv.Itoa(autoRuleScroe)
 }
 
 // UpdateManualRule update manualRuleName and manualExplaination

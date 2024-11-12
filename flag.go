@@ -35,7 +35,7 @@ var (
 	temp_title = flag.String(
 		"temp_title",
 		"",
-		"config file for final title of result (default : cfg\\final_result_title.cfg)",
+		"config file for final title of result (default : cfg/final_result_title.cfg)",
 	)
 )
 
@@ -96,7 +96,7 @@ func checkFlag() {
 		// 解析最终输出字段
 		TempOutputTitle = textUtil.File2Array(*temp_title)
 	}
-	*runPM1 = false
+	// *runPM1 = runPM1
 	*autoPVS1 = true
 
 }

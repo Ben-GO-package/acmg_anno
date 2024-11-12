@@ -46,6 +46,7 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	var sumPP int
 	var sumBA int
 	var sumBS int
+	var sumBM int
 	var sumBP int
 
 	// PVS
@@ -60,6 +61,7 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	// autoPVS1
 	// 若已使用PVS1，则不可同时使用PP3
 	// 任一强度的PVS1与PM4 不可共用的证据
+
 	if autoPVS1 {
 		switch item["AutoPVS1 Adjusted Strength"] {
 		case "VeryStrong":
@@ -133,8 +135,11 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	if PM1 == "1" {
 		sumPM++
 	}
-	if PM2 == "1" {
-		sumPM++
+	if PM1 == "Supporting" {
+		sumPP++
+	}
+	if PM2 == "Supporting" {
+		sumPP++
 	}
 	if PM3 == "1" {
 		sumPM++
@@ -171,9 +176,15 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	if PP2 == "1" {
 		sumPP++
 	}
-	if PP3 == "1" {
+	switch PP3 {
+	case "1":
 		sumPP++
+	case "Moderate":
+		sumPM++
+	case "Strong":
+		sumPS++
 	}
+
 	if PP4 == "1" {
 		sumPP++
 	}
@@ -210,9 +221,15 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	if BP3 == "1" {
 		sumBP++
 	}
-	if BP4 == "1" {
+	switch BP4 {
+	case "1":
 		sumBP++
+	case "Moderate":
+		sumBM++
+	case "Strong":
+		sumBS++
 	}
+
 	if BP5 == "1" {
 		sumBP++
 	}
@@ -231,6 +248,12 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 		if sumPM == 1 {
 			ACMG["LP"] = true
 		}
+		if PM2 == "Supporting" {
+			ACMG["LP"] = true
+		}
+	}
+	if sumBM >= 1 {
+		ACMG["LB"] = true
 	}
 	if sumPS > 1 {
 		ACMG["P"] = true

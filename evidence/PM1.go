@@ -1,57 +1,49 @@
 package evidence
 
 import (
+	"strconv"
 	"strings"
-	"github.com/brentp/bix"
-	"github.com/liserjrqlxue/goUtil/stringsUtil"
 )
 
 var (
 	pm1Ext   = 3
 	pm1Count = 2
+	oe       float32
 )
 
 // PM1
-func CheckPM1(item map[string]string, tbx *bix.Bix) string {
-	if !PM1Function.MatchString(item["Function"]) {
+func CheckPM1(item map[string]string) string {
+	if PP2PM1_special[item["entrez_id"]] || !ismissense.MatchString(item["Function"]) {
 		return "0"
 	}
-	var dbNSFP = item["Interpro_domain"]
-	var pfam = item["pfamId"]
-	var flag bool
+	if item["entrezID_oe"] == "-" {
+		return "0"
+	}
+	id_oe_pairs := strings.Split(item["entrezID_oe"], ",") //xxx_0.31693,2475_0.30241
+	for _, pair := range id_oe_pairs {
+		pairs := strings.Split(pair, "_")
+		gene_id := pairs[0]
+		oe, _ := strconv.ParseFloat(pairs[1], 32)
 
-	for _, k := range strings.Split(dbNSFP, ";") {
-		if pm1InterproDomain[k] {
-			flag = true
+		if gene_id == item["entrez_id"] {
+			//log.Printf("num, geneid,entrezID_oe: %d: %s:%f, %s", len(id_oe_pairs), item["entrez_id"], oe, item["entrezID_oe"])
+			if oe <= 0.2112 {
+				return "1"
+			} else if oe <= 0.3747 {
+				return "Supporting"
+			} else {
+				return "0"
+			}
 		}
 	}
-	for _, k := range strings.Split(pfam, ";") {
-		if pm1PfamId[k] {
-			flag = true
-		}
-	}
-	if !flag {
-		if item["PS1"] == "1" || item["PM5"] == "1" {
-			return "0"
-		}
-		var chr = strings.Replace(item["#Chr"], "chr", "", 1)
-		var start = stringsUtil.Atoi(item["Start"])
-		var end = stringsUtil.Atoi(item["Stop"])
-		n := countBix(tbx, chr, start-pm1Ext, end+pm1Ext)
-		if n >= pm1Count {
-			flag = true
-		}
-	}
-	if flag {
-		return "1"
-	} else {
-		return "0"
-	}
+
+	return "0"
+
 }
 
-func ComparePM1(item map[string]string, tbx *bix.Bix) {
+func ComparePM1(item map[string]string) {
 	rule := "PM1"
-	val := CheckPM1(item, tbx)
+	val := CheckPM1(item)
 	if val != item[rule] {
 		PrintConflict(item, rule, val, "Interpro_domain", "pfamId")
 	}

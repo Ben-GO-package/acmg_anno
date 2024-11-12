@@ -37,80 +37,44 @@ var transEN = map[string]string{
 	"备注说明": "Note",
 }
 
-var InputTitle_check = []string{
-	"Uploaded_variation",
-	"AutoPVS1 Adjusted Strength",
-	"cHGVS",
-	"cHGVS_org",
-	"#Chr",
-	"dbscSNV_ADA_pred",
-	"dbscSNV_RF_pred",
-	"Ens Condel Pred",
-	"Function",
-	"Gene Symbol",
-	"entrez_id",
-	"GERP++_RS_pred",
-	"GWASdb_or",
-	"Interpro_domain",
-	"ModeInheritance",
-	"MutationName",
-	"MutationTaster Pred",
-	"pHGVS",
-	"pHGVS1",
-	"PhyloP Placental Mammals Pred",
-	"PhyloP Vertebrates Pred",
-	"PM5",
-	"Polyphen2 HVAR Pred",
-	"PS1",
-	"PVS1",
-	"RepeatTag",
-	"SIFT Pred",
-	"SpliceAI Pred",
-	"Start",
-	"Stop",
-	"Transcript",
-	"VarType",
-}
-
 var transverTitle_relation_map = map[string]string{
 	"Uploaded_variation":         "Uploaded_variation",
-	"ESP6500 AF":                 "ESP6500_AF",       // :"BA1 ;BS1、BS2、 PM2、PVS1"
-	"1000G AF":                   "AF",               //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"ExAC AF":                    "ExAC_AF",          //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"ExAC EAS AF":                "ExAC_AF_EAS",      //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"GnomAD AF":                  "GnomAD_AF",        //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"GnomAD EAS AF":              "GnomAD_AF_eas",    //:"BA1 ;BS1、BS2、 PM2、PVS1",
-	"Transcript":                 "Feature",          //PS1 ; PM5
-	"Protein_position":           "Protein_position", //PS1 ; PM5
-	"cHGVS":                      "cHGVS",            //PS1 ; PM5
-	"Function":                   "Consequence",
-	"Gene Symbol":                "Symbol",
-	"RepeatTag":                  "RepeatTag",
-	"VarType":                    "VarType",
-	"GERP++_RS":                  "GERP_RS",
-	"PhyloP Vertebrates":         "PhyloP_Vertebrates",
-	"PhyloP Placental Mammals":   "PhyloP_Placental_Mammals",
-	"dbscSNV_RF_SCORE":           "rf_score",
-	"dbscSNV_ADA_SCORE":          "ada_score",
-	"SIFT Pred":                  "SIFT_pred",
-	"Polyphen2 HVAR Pred":        "Polyphen2_HVAR_Pred", //:"BP4 PP3",
-	"MutationTaster Pred":        "MutationTaster_pred", //:"BP4 PP3",
-	"Ens Condel Pred":            "Condel",              //:"BP4  PP3",
-	"SpliceAI Pred":              "SpliceAI_Pred",       //:"BP4 BP7 PP3",
-	"ExAC HomoAlt Count":         "ExAC_AC_Hom",         //:"BS2",
-	"GnomAD HomoAlt Count":       "GnomAD_nhomalt",      //:"BS2",
-	"ModeInheritance":            "Inheritance",
-	"Interpro_domain":            "Interpro_domain",
-	"#Chr":                       "#Chr",
-	"Start":                      "Start",
-	"Stop":                       "Stop",
-	"pHGVS":                      "pHGVS",
-	"pHGVS1":                     "pHGVS1",                     //PS1 ; PM5
-	"AutoPVS1 Adjusted Strength": "AutoPVS1_Adjusted_Strength", //:"PP3",
-	"MutationName":               "MutationName",
-	"GWASdb_or":                  "gwasCatalog_orOrBeta",
-	"Strand":                     "STRAND",
 	"entrez_id":                  "Gene",
+	"Gene Symbol":                "Symbol",
+	"ESP6500 AF":                 "ESP6500_AF",                 // :"BA1 ;BS1、BS2、 PM2、PVS1"
+	"1000G AF":                   "AF",                         //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"ExAC AF":                    "ExAC_AF",                    //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"ExAC EAS AF":                "ExAC_AF_EAS",                //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"GnomAD AF":                  "GnomAD_AF",                  //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"GnomAD EAS AF":              "GnomAD_AF_eas",              //:"BA1 ;BS1、BS2、 PM2、PVS1",
+	"Transcript":                 "Feature",                    //PS1 ; PM5
+	"Protein_position":           "Protein_position",           //PS1 ; PM5
+	"cHGVS":                      "cHGVS",                      //PS1 ; PM5
+	"Function":                   "Consequence",                //BP1 ; BP3 ; BP4 ; BP7 ; PM1 ; PM4 ; PM5 ;PP2 ; PP3 ; BP4 ; PS1
+	"RepeatTag":                  "RepeatTag",                  // BP3 ; PM4
+	"VarType":                    "VarType",                    // BP3
+	"GERP++_RS":                  "GERP_RS",                    // BP4 ;BP7 ; PP3
+	"PhyloP Vertebrates":         "PhyloP_Vertebrates",         // BP4 ;BP7 ; PP3
+	"PhyloP Placental Mammals":   "PhyloP_Placental_Mammals",   // BP4 ;BP7 ; PP3
+	"SIFT Pred":                  "SIFT_pred",                  //BP4 PP3
+	"SpliceAI Pred":              "SpliceAI_Pred",              //:"BP4 BP7 PP3",
+	"ExAC HomoAlt Count":         "ExAC_AC_Hom",                //:"BS2",
+	"GnomAD HomoAlt Count":       "GnomAD_nhomalt",             //:"BS2",
+	"ModeInheritance":            "Inheritance",                // PM2 ; BS2
+	"Interpro_domain":            "Interpro_domain",            // PM1
+	"#Chr":                       "#Chr",                       // PVS1
+	"Start":                      "Start",                      // PVS1
+	"Stop":                       "Stop",                       // PVS1
+	"pHGVS":                      "pHGVS",                      // PM5 ; PS1 ;
+	"pHGVS1":                     "pHGVS1",                     //PS1 ; PM5
+	"AutoPVS1 Adjusted Strength": "AutoPVS1_Adjusted_Strength", //:"PP3", PM4
+	"MutationName":               "MutationName",               // PS1 ; PVS1
+	"GWASdb_or":                  "gwasCatalog_orOrBeta",       // PS4
+	"Strand":                     "STRAND",                     // PVS1
+	"entrezID_oe":                "entrezID_oe",                //PM1
+	"SpliceAI_Max_Score":         "SpliceAI_Max_Score",         //BP4 PP3
+	"BayesDel_noAF_score":        "BayesDel_noAF_score",        //BP4 PP3
+	"REVEL":                      "REVEL",                      //BP4 PP3
 }
 
 var TempOutputTitle = []string{
@@ -118,7 +82,7 @@ var TempOutputTitle = []string{
 	"Feature",
 	"cHGVS",
 	"pHGVS",
-	"autoRuleName", "自动化判断",
+	"autoRuleName", "automated_judgment",
 	"pHGVS1",
 	"Symbol",
 	"entrez_id",
@@ -149,6 +113,10 @@ var TempOutputTitle = []string{
 	"ExAC_AF_EAS",
 	"GnomAD_AF",
 	"GnomAD_AF_eas",
+	"entrezID_oe",
+	"SpliceAI_Max_Score",
+	"BayesDel_noAF_score",
+	"REVEL",
 }
 
 // log

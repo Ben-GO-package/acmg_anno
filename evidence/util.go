@@ -142,6 +142,7 @@ var (
 	bs2GeneList       = make(map[string]bool)
 	ba1Exception      = make(map[string]bool)
 	pp2GeneList       = make(map[string]bool)
+	PP2PM1_special    = make(map[string]bool)
 	LOFGeneList       = make(map[string]int)
 )
 
@@ -247,6 +248,13 @@ func LoadBS2(fileName string) {
 	for _, line := range textUtil.File2Array(fileName) {
 		array := strings.Split(line, "\t")
 		bs2GeneList[array[1]] = true
+	}
+}
+
+func LoadPP2PM1_special(fileName string) {
+	for _, line := range textUtil.File2Array(fileName) {
+		array := strings.Split(line, "\t")
+		PP2PM1_special[array[1]] = true
 	}
 }
 

@@ -2,7 +2,7 @@ package evidence
 
 // PP2
 func CheckPP2(item map[string]string) string {
-	if !ismissense.MatchString(item["Function"]) {
+	if PP2PM1_special[item["entrez_id"]] || !ismissense.MatchString(item["Function"]) {
 		return "0"
 	}
 	if pp2GeneList[item["entrez_id"]] {
