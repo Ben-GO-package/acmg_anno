@@ -38,7 +38,7 @@ func AddEvidences(item map[string]string, AutoPVS1 bool, runPM1 bool) {
 	}
 	item["PM2"] = CheckPM2(item)
 	item["PM4"] = CheckPM4(item, AutoPVS1)
-	item["PP3"] = CheckPP3(item, AutoPVS1)
+	//item["PP3"] = CheckPP3(item, AutoPVS1)
 	item["BA1"] = CheckBA1(item)
 	item["BS1"] = CheckBS1(item)
 	item["BS2"] = CheckBS2(item)

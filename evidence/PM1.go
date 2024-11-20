@@ -27,9 +27,9 @@ func CheckPM1(item map[string]string) string {
 
 		if gene_id == item["entrez_id"] {
 			//log.Printf("num, geneid,entrezID_oe: %d: %s:%f, %s", len(id_oe_pairs), item["entrez_id"], oe, item["entrezID_oe"])
-			if oe <= 0.2112 {
+			if oe > 0 && oe <= 0.2112 {
 				return "1"
-			} else if oe <= 0.3747 {
+			} else if oe > 0.2112 && oe <= 0.3747 {
 				return "Supporting"
 			} else {
 				return "0"
