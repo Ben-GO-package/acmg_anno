@@ -2,9 +2,58 @@ package evidence
 
 // output B LB VUS LP P
 func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
-
+	var sumPVS int
+	var sumPS int
+	var sumPM int
+	var sumPP int
+	var sumBA int
+	var sumBS int
+	var sumBM int
+	var sumBP int
 	PVS1 := item["PVS1"]
+	// autoPVS1
+	// 若已使用PVS1，则不可同时使用PP3
+	// 任一强度的PVS1与PM4 不可共用的证据
 
+	if autoPVS1 {
+		switch item["AutoPVS1 Adjusted Strength"] {
+		case "VeryStrong":
+			sumPVS++
+			item["PP3"] = "-1"
+			item["PM4"] = "-1"
+			item["BP4"] = "-1"
+		case "Strong":
+			sumPS++
+			item["PP3"] = "-1"
+			item["PM4"] = "-1"
+			item["BP4"] = "-1"
+		case "Moderate":
+			sumPM++
+			item["PP3"] = "-1"
+			item["PM4"] = "-1"
+			item["BP4"] = "-1"
+		case "Supporting":
+			sumPP++
+			item["PP3"] = "-1"
+			item["PM4"] = "-1"
+			item["BP4"] = "-1"
+		}
+	} else {
+		if PVS1 == "1" {
+			sumPVS++
+			item["PP3"] = "-1"
+			item["PM4"] = "-1"
+			item["BP4"] = "-1"
+		}
+	}
+	// PP3 不与 PM4 共同得分
+	if item["PM4"] == "1" {
+		item["PP3"] = "-1"
+	}
+	// BP3 不与 BP4 共同得分
+	if item["BP3"] == "1" {
+		item["BP4"] = "-1"
+	}
 	PS1 := item["PS1"]
 	PS2 := item["PS2"]
 	PS3 := item["PS3"]
@@ -40,15 +89,6 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	BP6 := item["BP6"]
 	BP7 := item["BP7"]
 
-	var sumPVS int
-	var sumPS int
-	var sumPM int
-	var sumPP int
-	var sumBA int
-	var sumBS int
-	var sumBM int
-	var sumBP int
-
 	// PVS
 	//  PVS1 5 得分
 	//  PVS1 6 不得分
@@ -57,36 +97,6 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	}
 	if PVS1 == "6" {
 		PVS1 = "0"
-	}
-	// autoPVS1
-	// 若已使用PVS1，则不可同时使用PP3
-	// 任一强度的PVS1与PM4 不可共用的证据
-
-	if autoPVS1 {
-		switch item["AutoPVS1 Adjusted Strength"] {
-		case "VeryStrong":
-			sumPVS++
-			PP3 = "0"
-			PM4 = "0"
-		case "Strong":
-			sumPS++
-			PP3 = "0"
-			PM4 = "0"
-		case "Moderate":
-			sumPM++
-			PP3 = "0"
-			PM4 = "0"
-		case "Supporting":
-			sumPP++
-			PP3 = "0"
-			PM4 = "0"
-		}
-	} else {
-		if PVS1 == "1" {
-			sumPVS++
-			PP3 = "0"
-			PM4 = "0"
-		}
 	}
 
 	// PS
@@ -164,10 +174,7 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	if PS3 == "1" {
 		PP3 = "0"
 	}
-	// PP3 不与 PM4 共同得分
-	if PM4 == "1" {
-		PP3 = "0"
-	}
+
 	//  ACMG 已取消证据 PP5
 	PP5 = "0"
 	if PP1 == "1" {
@@ -252,7 +259,7 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 			ACMG["LP"] = true
 		}
 	}
-	if sumBM >= 1 {
+	if sumBM >= 1 && sumPVS == 0 && sumPS == 0 && sumPM == 0 && sumPP == 0 && sumBA == 0 && sumBS == 0 {
 		ACMG["LB"] = true
 	}
 	if sumPS > 1 {

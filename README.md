@@ -25,3 +25,27 @@ acmg_anno -snv vep_autopvs1.demo.tsv -acmg -autoPVS1 -tsv -json -runPM1  -outpre
 
 ## acmgDb数据库
 cfg/acmg.db.cfg 调用的各个数据库构建说明参考底核心依赖库 [acmg2015说明文档](https://pkg.go.dev/github.com/Ben-GO-package/acmg2015#readme-heading)
+
+## temp 文件
+可以通过设置 final_result_title.cfg 文件，控制 acmg.temp.tsv 的输出字段，进而详细的查看每个证据项的评估结果。证据项值的含义说明
+
+| 值         | 含义                                    |
+| ---------- | --------------------------------------- |
+| 0          | 证据项不支持                            |
+| 1          | 证据项支持                              |
+| Supporting | 证据项发生升降级，升降级后为 Supporting |
+| Moderate   | 证据项发生升降级，升降级后为 Moderate   |
+| Strong     | 证据项发生升降级，升降级后为 Strong     |
+| -1         | 证据项和其他高优先级证据项不共用        |
+
+- 不共用证据项清单
+若强证据项支持，若证据项直接忽略不纳入考虑
+
+| 强证据项 | 弱若证据项 | 更新时间 |
+| -------- | ---------- | -------- |
+| PVS1     | PM4        | 2023年前 |
+| PVS1     | PP3        | 2023年前 |
+| PM4      | PP3        | 2023年前 |
+| PVS1     | BP4        | 2024.11  |
+| PM1      | PP2        | 2023年前 |
+| BP3      | BP4        | 2024.11  |

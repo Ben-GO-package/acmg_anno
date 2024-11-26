@@ -34,7 +34,7 @@ func AddEvidences(item map[string]string, AutoPVS1 bool, runPM1 bool) {
 	if item["PM1"] != "1" && item["PM1"] != "Supporting" { // PM1 和PP2不共用
 		item["PP2"] = CheckPP2(item)
 	} else {
-		item["PP2"] = "0"
+		item["PP2"] = "-1"
 	}
 	item["PM2"] = CheckPM2(item)
 	item["PM4"] = CheckPM4(item, AutoPVS1)

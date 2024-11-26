@@ -61,7 +61,6 @@ func UpdateAutoRule(item map[string]string) {
 			autoRuleName = append(autoRuleName, key+"_Strong")
 			autoIsChecked = append(autoIsChecked, "1")
 			//autoRuleScroe += autoRuleScores[key]
-
 		}
 	}
 	item["autoRuleName"] = strings.Join(autoRuleName, "\n")
@@ -69,15 +68,15 @@ func UpdateAutoRule(item map[string]string) {
 	//item["autoRuleScore"] = strconv.Itoa(autoRuleScroe)
 }
 
-// UpdateManualRule update manualRuleName and manualExplaination
-func UpdateManualRule(item map[string]string) {
-	var manualRuleName, manualExplaination []string
-	for _, key := range manualRuleKey {
-		if item[key] != "" && item[key] != "0" {
-			manualRuleName = append(manualRuleName, key)
-			manualExplaination = append(manualExplaination, item[key])
-		}
-	}
-	item["manualRuleName"] = strings.Join(manualRuleName, "\n")
-	item["manualExplaination"] = strings.Join(manualExplaination, "\n")
-}
+// // UpdateManualRule update manualRuleName and manualExplaination
+// func UpdateManualRule(item map[string]string) {
+// 	var manualRuleName, manualExplaination []string
+// 	for _, key := range manualRuleKey {
+// 		if item[key] != "" && item[key] != "0" {
+// 			manualRuleName = append(manualRuleName, key)
+// 			manualExplaination = append(manualExplaination, item[key])
+// 		}
+// 	}
+// 	item["manualRuleName"] = strings.Join(manualRuleName, "\n")
+// 	item["manualExplaination"] = strings.Join(manualExplaination, "\n")
+// }
