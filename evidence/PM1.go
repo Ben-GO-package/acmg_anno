@@ -21,18 +21,20 @@ func CheckPM1(item map[string]string) string {
 	}
 	id_oe_pairs := strings.Split(item["entrezID_oe"], ",") //xxx_0.31693,2475_0.30241
 	for _, pair := range id_oe_pairs {
-		pairs := strings.Split(pair, "_")
-		gene_id := pairs[0]
-		oe, _ := strconv.ParseFloat(pairs[1], 32)
+		if pair != "" {
+			pairs := strings.Split(pair, "_")
+			gene_id := pairs[0]
+			oe, _ := strconv.ParseFloat(pairs[1], 32)
 
-		if gene_id == item["entrez_id"] {
-			//log.Printf("num, geneid,entrezID_oe: %d: %s:%f, %s", len(id_oe_pairs), item["entrez_id"], oe, item["entrezID_oe"])
-			if oe > 0 && oe <= 0.2112 {
-				return "1"
-			} else if oe > 0.2112 && oe <= 0.3747 {
-				return "Supporting"
-			} else {
-				return "0"
+			if gene_id == item["entrez_id"] {
+				//log.Printf("num, geneid,entrezID_oe: %d: %s:%f, %s", len(id_oe_pairs), item["entrez_id"], oe, item["entrezID_oe"])
+				if oe > 0 && oe <= 0.2112 {
+					return "1"
+				} else if oe > 0.2112 && oe <= 0.3747 {
+					return "Supporting"
+				} else {
+					return "0"
+				}
 			}
 		}
 	}
