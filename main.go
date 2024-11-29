@@ -23,7 +23,7 @@ func init() {
 	gitDescribe := "https://gitlab.genomics.cn/bi-procreate/acmg"
 	buildStamp := "2024.11.21"
 	golangVersion := "1.21.0"
-	fmt.Printf("acmg_anno      :'v1.0.1.241121'\n")
+	fmt.Printf("acmg_anno      :'v1.0.4 @ 20241121'\n")
 	Version(gitDescribe, buildStamp, golangVersion)
 
 	// 解析命令行参数

@@ -1,5 +1,5 @@
 
-## 20241104
+## v1.0.4 @ 20241121
 
 - [x] PM2 统一降级为PM2_P
 
@@ -7,18 +7,11 @@
   并存在增降级。依赖原字段 Revel ，SpliceAI_Max_Score ；新增依赖字段 、BayesDel。（通过VEP注释补充新增字段）,数据库缺失逻辑等待反馈，暂按不适用证据项处理。
 
 - [x] 针对 PM1 更新证据项逻辑。
-    使用 regional_missense_constraint OE，进行PM1证据项的判定，并进行相应的升降级调整。
+    使用 regional_missense_constraint OE，进行PM1证据项的判定，并进行相应的升降级调整。新增依赖字段 entrezID_oe。（通过VEP注释补充新增字段）
 
 - [x] PP2通用判定基因list更新
-  依赖字段，oe值和z-score，都来自gnomad数据库，数据获取链接如下：
-```shell
-# google cloud 下载 oe值数据
-对基因内的不同区域根据选择压力差异进行分区计算oe值的结果。
-https://datasetgnomad.blob.core.windows.net/dataset/release/2.1.1/regional_missense_constraint/gnomAD_v2.1.1_transcripts_with_rmc.tsv
+  都来自gnomad数据库，PP2.gene.tsv。
 
-基因水平，不根据压力对基因进行分区的结果：
-https://datasetgnomad.blob.core.windows.net/dataset/release/2.1.1/regional_missense_constraint/gnomAD_v2.1.1_transcripts_without_rmc.tsv
-```
 首次出现BM证据项目
 
 
