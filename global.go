@@ -75,6 +75,11 @@ var transverTitle_relation_map = map[string]string{
 	"SpliceAI_Max_Score":         "SpliceAI_Max_Score",         //BP4 PP3
 	"BayesDel_noAF_score":        "BayesDel_noAF_score",        //BP4 PP3
 	"REVEL":                      "REVEL",                      //BP4 PP3
+	"dbscSNV_RF_SCORE":           "rf_score",
+	"dbscSNV_ADA_SCORE":          "ada_score",
+	"Polyphen2 HVAR Pred":        "Polyphen2_HVAR_Pred", //:"BP4 PP3",
+	"MutationTaster Pred":        "MutationTaster_pred", //:"BP4 PP3",
+	"Ens Condel Pred":            "Condel",              //:"BP4  PP3",
 }
 
 var TempOutputTitle = []string{
