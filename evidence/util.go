@@ -31,16 +31,16 @@ type Region struct {
 
 var (
 	PM1Function    = regexp.MustCompile(`missense|cds-indel`)
-	isBP3Func      = regexp.MustCompile(`cds-del|cds-ins|cds-indel|inframe_deletion|inframe_insertion|protein_altering_variant`)
-	isPM4Func      = regexp.MustCompile(`cds-del|cds-ins|cds-indel|stop-loss|inframe_deletion|inframe_insertion|stop_lost|protein_altering_variant`)
+	isBP3PM4Func   = regexp.MustCompile(`cds-del|cds-ins|cds-indel|inframe_deletion|inframe_insertion|protein_altering_variant`)
 	getAAPos       = regexp.MustCompile(`^p\.[A-Z]\d+`)
 	IsClinVarPLP   = regexp.MustCompile(`Pathogenic|Likely_pathogenic`)
 	IsHgmdDM       = regexp.MustCompile(`DM$|DM\|`)
-	isARDRXLPRDDNA = regexp.MustCompile(`AR|DR|XL|PR|DD|NA|UNK`)
+	isARDRXLPRDDNA = regexp.MustCompile(`AR|DR|XL|PR|DD|NA`) // 20250627 央彩六期需求，PM2 剔除UNK
+
 	isADPDYL       = regexp.MustCompile(`AD|PD|YL`)
 	isSplice       = regexp.MustCompile(`splice`)
 	ismissense     = regexp.MustCompile(`missense`)
-	isSpliceAccDon = regexp.MustCompile(`splice_acceptor_variant|splice_donor_variant`)
+	isNoPP3BP4     = regexp.MustCompile(`splice_donor_variant|splice_acceptor_variant|start_lost|start_retained_variant|stop-loss|frameshift_variant|stop_gained|cds-del|cds-ins|cds-indel|inframe_deletion|inframe_insertion|protein_altering_variant`)
 	isSpliceIntron = regexp.MustCompile(`splice|intron`)
 	isIntron       = regexp.MustCompile(`intron`)
 	isSplice20     = regexp.MustCompile(`splice[+-]20`)
@@ -145,6 +145,18 @@ var (
 	PP2PM1_special    = make(map[string]bool)
 	LOFGeneList       = make(map[string]int)
 )
+
+func get_aaLength(Codons string) int {
+	if Codons != "" && Codons != "." && Codons != "-" {
+		parts := strings.Split(Codons, "/")
+		if len(parts) == 2 {
+			before := len(parts[0]) / 3
+			// after := len(parts[1]) / 3
+			return before
+		}
+	}
+	return 0
+}
 
 func LoadPS1PM5(hgvs, pHgvs, aaPos string) {
 	hgvsCount = tsv2mapStringInt(hgvs)

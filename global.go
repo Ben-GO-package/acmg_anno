@@ -41,6 +41,7 @@ var transverTitle_relation_map = map[string]string{
 	"Uploaded_variation":         "Uploaded_variation",
 	"entrez_id":                  "Gene",
 	"Gene Symbol":                "Symbol",
+	"Codons":                     "Codons",                     // PM4
 	"ESP6500 AF":                 "ESP6500_AF",                 // :"BA1 ;BS1、BS2、 PM2、PVS1"
 	"1000G AF":                   "AF",                         //:"BA1 ;BS1、BS2、 PM2、PVS1",
 	"ExAC AF":                    "ExAC_AF",                    //:"BA1 ;BS1、BS2、 PM2、PVS1",
@@ -59,7 +60,8 @@ var transverTitle_relation_map = map[string]string{
 	"SIFT Pred":                  "SIFT_pred",                  //BP4 PP3
 	"SpliceAI Pred":              "SpliceAI_Pred",              //:"BP4 BP7 PP3",
 	"ExAC HomoAlt Count":         "ExAC_AC_Hom",                //:"BS2",
-	"GnomAD HomoAlt Count":       "GnomAD_nhomalt",             //:"BS2",
+	"GnomAD_nhomalt":             "GnomAD_nhomalt",             //:"BS2",
+	"GnomAD_AC":                  "GnomAD_AC",                  //:"BS2",
 	"ModeInheritance":            "Inheritance",                // PM2 ; BS2
 	"Interpro_domain":            "Interpro_domain",            // PM1
 	"#Chr":                       "#Chr",                       // PVS1
@@ -79,7 +81,7 @@ var transverTitle_relation_map = map[string]string{
 	"dbscSNV_ADA_SCORE":          "ada_score",
 	"Polyphen2 HVAR Pred":        "Polyphen2_HVAR_Pred", //:"BP4 PP3",
 	"MutationTaster Pred":        "MutationTaster_pred", //:"BP4 PP3",
-	"Ens Condel Pred":            "Condel",              //:"BP4  PP3",
+	"Ens Condel Pred":            "Condel",              //:"BP4  PP3 PM4",
 }
 
 var TempOutputTitle = []string{
@@ -87,6 +89,7 @@ var TempOutputTitle = []string{
 	"Feature",
 	"cHGVS",
 	"pHGVS",
+	"Codons",
 	"autoRuleName", "automated_judgment",
 	"pHGVS1",
 	"Symbol",
@@ -105,6 +108,7 @@ var TempOutputTitle = []string{
 	"Condel",
 	"SpliceAI_Pred",
 	"ExAC_AC_Hom",
+	"GnomAD_AC",
 	"GnomAD_nhomalt",
 	"Inheritance",
 	"Interpro_domain",

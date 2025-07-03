@@ -20,12 +20,12 @@ v1.0.0.2 @ 2024.4.7
 | dbscSNV_RF_SCORE           | rf_score                              |
 | dbscSNV_ADA_SCORE          | ada_score                             |
 | SIFT Pred                  | SIFT_pred                             |
-| Polyphen2_HVAR_Pred        | Polyphen2_HVAR_Pred                   |BP4 PP3                   |
+| Polyphen2_HVAR_Pred        | Polyphen2_HVAR_Pred                   | BP4 PP3                   |
 | MutationTaster Pred        | MutationTaster_pred                   | BP4 PP3                   |
 | Ens Condel Pred            | Condel                                | BP4  PP3                  |
 | SpliceAI Pred              | SpliceAI_Pred                         | BP4 BP7 PP3               |
 | ExAC HomoAlt Count         | ExAC_AC_Hom                           | BS2                       |
-| GnomAD HomoAlt Count       | GnomAD_nhomalt                        | BS2                       |
+| GnomAD_nhomalt             | GnomAD_nhomalt                        | BS2                       |
 | ModeInheritance            | Inheritance                           |
 | Interpro_domain            | Interpro_domain                       |
 | pfamId                     | 无法注释，PM1要弃用这个字段应该没用了 |

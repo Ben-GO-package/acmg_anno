@@ -151,6 +151,9 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	if PM2 == "Supporting" {
 		sumPP++
 	}
+	if PM4 == "Supporting" {
+		sumPP++
+	}
 	if PM3 == "1" {
 		sumPM++
 	}

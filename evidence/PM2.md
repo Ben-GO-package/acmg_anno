@@ -11,10 +11,10 @@
 检查的频率数据库:
 - ESP6500 AF
 - 1000G AF
-- ExAC AF
-- ExAC EAS AF
 - GnomAD AF
 - GnomAD EAS AF
+~~- ExAC AF~~  #20250627 -央彩六期需求剔除该数据库
+~~- ExAC EAS AF~~ # 20250627 -央彩六期需求剔除该数据库
 
 注意事项:
 - 满足条件时判定为Supporting级别

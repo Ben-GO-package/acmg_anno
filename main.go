@@ -21,9 +21,9 @@ import (
 func init() {
 	// 打印版本信息
 	gitDescribe := "https://gitlab.genomics.cn/bi-procreate/acmg"
-	buildStamp := "2024.11.21"
+	buildStamp := "2025.7.1"
 	golangVersion := "1.21.0"
-	fmt.Printf("acmg_anno      :'v1.0.4 @ 20241121'\n")
+	fmt.Printf("acmg_anno      :'v1.0.5 @ 2025.7.1'\n")
 	Version(gitDescribe, buildStamp, golangVersion)
 
 	// 解析命令行参数

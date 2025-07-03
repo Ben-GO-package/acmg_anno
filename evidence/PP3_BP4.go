@@ -47,10 +47,10 @@ func CheckREVEL(REVEL_score_float float64) (string, string) { //PP3,BP4
 func CheckPP3_BP4(item map[string]string) (string, string) {
 	PP3 := "0"
 	BP4 := "0"
-	if isSpliceAccDon.MatchString(item["Function"]) {
+	if isNoPP3BP4.MatchString(item["Function"]) {
 		return PP3, BP4
 	}
-	if item["SpliceAI_Max_Score"] == "-" { 
+	if item["SpliceAI_Max_Score"] == "-" {
 		//fmt.Printf("SpliceAI_Max_Score_float >0.100000: %f", SpliceAI_Max_Score_float)
 		if ismissense.MatchString(item["Function"]) {
 			if item["REVEL"] == "-" { // REVEL 缺失
@@ -67,7 +67,7 @@ func CheckPP3_BP4(item map[string]string) (string, string) {
 				return PP3, BP4
 			}
 		} else {
-			return "0", "0" 
+			return "0", "0"
 		}
 	} else {
 		SpliceAI_Max_Score_float, _ := strconv.ParseFloat(item["SpliceAI_Max_Score"], 64)
