@@ -40,7 +40,7 @@ var (
 	isADPDYL       = regexp.MustCompile(`AD|PD|YL`)
 	isSplice       = regexp.MustCompile(`splice`)
 	ismissense     = regexp.MustCompile(`missense`)
-	isNoPP3BP4     = regexp.MustCompile(`splice_donor_variant|splice_acceptor_variant|start_lost|start_retained_variant|stop-loss|frameshift_variant|stop_gained|cds-del|cds-ins|cds-indel|inframe_deletion|inframe_insertion|protein_altering_variant`)
+	isNoPP3BP4     = regexp.MustCompile(`splice_donor_variant|splice_acceptor_variant|start_lost|start_retained_variant|stop-loss|stop_lost|frameshift_variant|stop_gained|cds-del|cds-ins|cds-indel|inframe_deletion|inframe_insertion|protein_altering_variant`)
 	isSpliceIntron = regexp.MustCompile(`splice|intron`)
 	isIntron       = regexp.MustCompile(`intron`)
 	isSplice20     = regexp.MustCompile(`splice[+-]20`)
