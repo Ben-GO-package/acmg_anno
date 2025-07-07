@@ -1,16 +1,11 @@
 package evidence
 
-import (
-	"regexp"
-	"strconv"
-)
+import "regexp"
 
 // ture	:	"1"
 // flase:	"0"
 // nil	:	""
-
 func CheckPM4(item map[string]string, autoPVS1 bool) string {
-
 	if autoPVS1 {
 		switch item["AutoPVS1 Adjusted Strength"] {
 		case "VeryStrong":
@@ -25,26 +20,10 @@ func CheckPM4(item map[string]string, autoPVS1 bool) string {
 	} else if item["PVS1"] == "1" {
 		return "0"
 	}
-	var (
-		isPM4_StrongFunc = regexp.MustCompile(`stop-loss|stop_lost`)
-	)
-	if isPM4_StrongFunc.MatchString(item["Function"]) {
-		return "1"
-	}
-	if isBP3PM4Func.MatchString(item["Function"]) {
+	var isPM4Func = regexp.MustCompile(`cds-del|cds-ins|cds-indel|stop-loss|inframe_deletion|inframe_insertion|stop_lost|protein_altering_variant`)
+	if isPM4Func.MatchString(item["Function"]) {
 		if item["RepeatTag"] == "" || item["RepeatTag"] == "." || item["RepeatTag"] == "-" {
-			BayesDel_noAF_score_float, _ := strconv.ParseFloat(item["BayesDel_noAF_score"], 64)
-			if BayesDel_noAF_score_float >= 0.13 {
-				if get_aaLength(item["Codons"]) >= 2 {
-					return "1"
-				} else if get_aaLength(item["Codons"]) == 1 {
-					return "Supporting"
-				} else {
-					return "0"
-				}
-			} else {
-				return "0"
-			}
+			return "1"
 		} else {
 			return "0"
 		}
