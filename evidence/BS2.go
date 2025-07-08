@@ -54,8 +54,8 @@ func CheckBS2(item map[string]string) string {
 			}
 		}
 	} else if isXL_YL.MatchString(inherit) {
-		if item["GnomAD_nhomalt"] != "" && item["GnomAD_nhomalt"] != "-" {
-			value, err := strconv.Atoi(item["GnomAD_nhomalt"])
+		if item["GnomAD_nhomalt_male"] != "" && item["GnomAD_nhomalt_male"] != "-" {
+			value, err := strconv.Atoi(item["GnomAD_nhomalt_male"])
 			if err == nil && value >= 5 {
 				return "1"
 			}

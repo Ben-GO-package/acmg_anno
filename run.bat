@@ -12,4 +12,4 @@ set GOOS=linux
 go env -w GOOS=linux
 go build -o acmg_anno acmg.go   flag.go   global.go  io.go log.go  main.go 
 
-.\acmg_anno.exe -snv test_data.tsv -acmg -autoPVS1 -tsv -json -outpred  -runPM1
+.\acmg_anno.exe -snv test\test_data.tsv  -acmg -autoPVS1 -tsv -json -outpred  -runPM1
