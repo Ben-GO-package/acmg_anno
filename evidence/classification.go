@@ -262,9 +262,10 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 			ACMG["LP"] = true
 		}
 	}
-	if sumBM >= 1 && sumPVS == 0 && sumPS == 0 && sumPM == 0 && sumPP == 0 && sumBA == 0 && sumBS == 0 {
-		ACMG["LB"] = true
-	}
+	// Update By Liu.Bo @  2025/01/24 15:47:54 中华反馈：解读验收过程认为该逻辑过于严格，删除该判定规则，
+	// if sumBM >= 1 && sumPVS == 0 && sumPS == 0 && sumPM == 0 && sumPP == 0 && sumBA == 0 && sumBS == 0 {
+	// 	ACMG["LB"] = true
+	// }
 	if sumPS > 1 {
 		ACMG["P"] = true
 	}
