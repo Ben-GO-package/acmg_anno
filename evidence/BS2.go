@@ -33,7 +33,7 @@ func CheckBS2(item map[string]string) string {
 
 	var (
 		//Inheritance Model
-		isADAR_AR_PR_DR = regexp.MustCompile(`AD,AR|DR|PR|YL`)
+		isADAR_AR_PR_DR = regexp.MustCompile(`AD,AR|AR|PR|DR`)
 		isAD_DD         = regexp.MustCompile(`AD|DD`)
 		isXL_YL         = regexp.MustCompile(`XL|YL`)
 	)
