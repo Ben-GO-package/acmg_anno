@@ -2,6 +2,8 @@ package evidence
 
 import (
 	"strconv"
+
+	simple_util "github.com/liserjrqlxue/simple-util"
 )
 
 const BayesDelThreshold = -0.18 // 定义BayesDel_noAF_score阈值
@@ -13,8 +15,16 @@ func CheckBP3(item map[string]string) string {
 		if item["RepeatTag"] == "" || item["RepeatTag"] == "." || item["RepeatTag"] == "-" {
 			return "0"
 		} else {
-			BayesDel_noAF_score_float, _ := strconv.ParseFloat(item["BayesDel_noAF_score"], 64)
-			if BayesDel_noAF_score_float <= BayesDelThreshold {
+			subMatch := repeatSeq.FindStringSubmatch(item["cHGVS"])
+			if len(subMatch) > 1 {
+				dupCount, err := strconv.Atoi(subMatch[1])
+				simple_util.CheckErr(err)
+				if dupCount < 10 {
+					return "0"
+				} else {
+					return "1"
+				}
+			} else {
 				return "1"
 			}
 		}

@@ -62,6 +62,7 @@ var transverTitle_relation_map = map[string]string{
 	"ExAC HomoAlt Count":         "ExAC_AC_Hom",                //:"BS2",
 	"GnomAD_nhomalt":             "GnomAD_nhomalt",             //:"BS2",
 	"GnomAD_AC":                  "GnomAD_AC",                  //:"BS2",
+	"GnomAD_AC_male":             "GnomAD_AC_male",             //:"BS2",
 	"GnomAD_nhomalt_eas":         "GnomAD_nhomalt_eas",         //BS2
 	"ModeInheritance":            "Inheritance",                // PM2 ; BS2
 	"Interpro_domain":            "Interpro_domain",            // PM1
