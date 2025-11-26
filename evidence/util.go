@@ -31,6 +31,7 @@ type Region struct {
 
 var (
 	PM1Function    = regexp.MustCompile(`missense|cds-indel`)
+	PS1Function    = regexp.MustCompile(`missense|start_retained_variant|ncRNA`)
 	isBP3PM4Func   = regexp.MustCompile(`cds-del|cds-ins|cds-indel|inframe_deletion|inframe_insertion|protein_altering_variant`)
 	getAAPos       = regexp.MustCompile(`^p\.[A-Z]\d+`)
 	IsClinVarPLP   = regexp.MustCompile(`Pathogenic|Likely_pathogenic`)
@@ -136,6 +137,8 @@ var (
 	hgvsCount         = make(map[string]int)
 	phgvsCount        = make(map[string]int)
 	aaPostCount       = make(map[string]int)
+	phgvsdb           = make(map[string]string)
+	aaPostdb          = make(map[string]string)
 	pm1PfamId         = make(map[string]bool)
 	pm1InterproDomain = make(map[string]bool)
 	bp1GeneList       = make(map[string]bool)
@@ -173,13 +176,27 @@ func LoadPS1PM5Database(database string) {
 	var scanner = bufio.NewScanner(gz)
 	for scanner.Scan() {
 		var array = strings.Split(scanner.Text(), "\t")
-		array = append(array, "NA", "NA", "NA", "NA")
+		array = append(array, "NA", "NA", "NA", "NA", "NA", "NA")
 		var trans_chgvs = array[0] + ":" + array[2]
 		var trans_phgvs = array[0] + ":" + array[3]
 		var trans_aapos = array[0] + ":" + array[1]
+		value := array[0] + "|" + array[1] + "|" + array[2] + "|" + array[3] + "|Revel=" + array[4] + "|Grantham=" + array[6] + "|" + array[5]
 		hgvsCount[trans_chgvs]++
 		phgvsCount[trans_phgvs]++
 		aaPostCount[trans_aapos]++
+
+		if existing, exists := phgvsdb[trans_phgvs]; exists {
+			phgvsdb[trans_phgvs] = existing + ";" + value
+		} else {
+			phgvsdb[trans_phgvs] = value
+		}
+
+		if existing, exists := aaPostdb[trans_aapos]; exists {
+			aaPostdb[trans_aapos] = existing + ";" + value
+		} else {
+			aaPostdb[trans_aapos] = value
+		}
+
 		//fmt.Printf("load %s:%v\t%s:%v\t%s:%v\n", trans_chgvs, hgvsCount[trans_chgvs], trans_phgvs, phgvsCount[trans_phgvs], trans_aapos, aaPostCount[trans_aapos])
 
 	}

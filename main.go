@@ -53,7 +53,7 @@ func main() {
 		check_transverTitle_relation_map(finalOutputTitle)
 		finalOutputTitle = append(finalOutputTitle, "autoRuleName", "automated_judgment")
 		if *outpred {
-			finalOutputTitle = append(finalOutputTitle, "dbscSNV_ADA_pred", "dbscSNV_RF_pred", "GERP_RS_pred", "PhyloP_Vertebrates_Pred", "PhyloP_Placental_Mammals_Pred")
+			finalOutputTitle = append(finalOutputTitle, "dbscSNV_ADA_pred", "dbscSNV_RF_pred", "GERP_RS_pred", "PhyloP_Vertebrates_Pred", "PhyloP_Placental_Mammals_Pred", "PS1_evidence", "PM5_evidence")
 		}
 		fmt.Print("Finish Mutation Loading : ", len(data), "\n")
 
@@ -68,6 +68,8 @@ func main() {
 			raw_item["dbscSNV_RF_pred"] = item["dbscSNV_RF_pred"]
 			raw_item["PhyloP_Vertebrates_Pred"] = item["PhyloP Vertebrates Pred"]
 			raw_item["PhyloP_Placental_Mammals_Pred"] = item["PhyloP Placental Mammals Pred"]
+			raw_item["PS1_evidence"] = item["PS1_evidence"]
+			raw_item["PM5_evidence"] = item["PM5_evidence"]
 
 			for _, col := range TempOutputTitle {
 				_, exists := raw_item[col]

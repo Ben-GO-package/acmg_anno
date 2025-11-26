@@ -8,6 +8,7 @@
    - 检查 trans_aapos (转录本:蛋白质位点)的致病记录数
    - 检查 trans_phgvs (转录本:蛋白质改变)的致病记录数
    - 如果 aapos记录数 > phgvs记录数,则判定为PM5
+   - 评估变异的Revel或Grantham评分 >= 已知变异
 
 注意事项:
 - 数据来源于PS1PM5.database

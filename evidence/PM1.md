@@ -12,4 +12,5 @@
 
 注意事项:
 - PM1和PP2不能共同使用
+- PP3_Strong不与PM1及PM1_Supporting共用
 - oe值来源于entrezID_oe字段 

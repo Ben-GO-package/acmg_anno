@@ -30,9 +30,9 @@ func FindPathogenicMissense(fileName, key string, pathogenicRegexp *regexp.Regex
 }
 
 // PS1
-func CheckPS1(item map[string]string) string {
-	if !ismissense.MatchString(item["Function"]) {
-		return "0"
+func CheckPS1(item map[string]string) (string, string) {
+	if !PS1Function.MatchString(item["Function"]) {
+		return "0", "-"
 	}
 	var trans_chgvs = item["Transcript"] + ":" + item["cHGVS"]
 	var trans_phgvs = item["Transcript"] + ":" + item["pHGVS1"]
@@ -40,15 +40,16 @@ func CheckPS1(item map[string]string) string {
 	var countPHGVS = phgvsCount[trans_phgvs]
 	//fmt.Printf("%s\t%s\t%d\t%d\n", trans_chgvs, trans_phgvs, countHGVS,countPHGVS)
 	if countPHGVS > countHGVS {
-		return "1"
+		var dataPHGVS = phgvsdb[trans_phgvs]
+		return "1", dataPHGVS
 	} else {
-		return "0"
+		return "0", "-"
 	}
 }
 
 func ComparePS1(item map[string]string, ClinVarMissense, ClinVarPHGVSlist, HGMDMissense, HGMDPHGVSlist map[string]int) {
 	rule := "PS1"
-	val := CheckPS1(item)
+	val, _ := CheckPS1(item)
 	if val != item[rule] {
 		PrintConflict(item, rule, val, "Function", "Transcript", "pHGVS")
 	}

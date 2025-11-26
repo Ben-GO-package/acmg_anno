@@ -25,8 +25,8 @@ func AddEvidences(item map[string]string, AutoPVS1 bool, runPM1 bool) {
 	if !AutoPVS1 {
 		item["PVS1"] = "0" //CheckPVS1(item, LOFGeneList, transcriptInfo, tbx)
 	}
-	item["PS1"] = CheckPS1(item)
-	item["PM5"] = CheckPM5(item)
+	item["PS1"], item["PS1_evidence"] = CheckPS1(item)
+	item["PM5"], item["PM5_evidence"] = CheckPM5(item)
 	item["PS4"] = CheckPS4(item)
 	if runPM1 {
 		item["PM1"] = CheckPM1(item)

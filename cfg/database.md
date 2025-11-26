@@ -18,6 +18,7 @@ PathogenicLite	acmg/PathogenicLite.bed.gz
 
 ## PS1PM5.database
 ClinVar或HGMD中收录为pathogenic、likely pathogenic、Uncertain_significance、 DM、pathogenic/likely pathogenic、Conflicting_interpretations_of_pathogenicity（不包含 B、LB）的missense变异
+新增三列Revel值;Grantham值;chr-pos-ref-alt
 ```
 NM_005957.5	429/656	c.1286A>T	p.E429A
 NM_001018115.3	393/1451	c.1179T>G	p.T393=

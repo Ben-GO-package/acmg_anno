@@ -54,6 +54,15 @@ func PredACMG2015(item map[string]string, autoPVS1 bool, runPM1 bool) string {
 	if item["BP3"] == "1" {
 		item["BP4"] = "-1"
 	}
+	// PP3_Strong不与PM1共用
+	if item["PP3"] == "Strong" {
+		item["PM1"] = "-1"
+	}
+	// PP3_Strong不与PP2共用
+	if item["PP3"] == "Strong" {
+		item["PP2"] = "-1"
+	}
+
 	PS1 := item["PS1"]
 	PS2 := item["PS2"]
 	PS3 := item["PS3"]
