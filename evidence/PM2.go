@@ -24,7 +24,7 @@ func CheckPM2(item map[string]string) string {
 		} else {
 			return "0"
 		}
-	} else if isADPDYL.MatchString(inherit) {
+	} else if isADPDYL.MatchString(inherit) || inherit == "UNK" {
 		if bs2GeneList[item["entrez_id"]] {
 			if CheckAFAllLowThen(item, PM2AFList, PM2ADAFThreshold2, true) {
 				return "Supporting"
