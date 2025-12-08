@@ -32,7 +32,7 @@ func CheckREVEL(REVEL_score_float float64) (string, string) { //PP3,BP4
 	if REVEL_score_float >= 0.644 && REVEL_score_float < 0.773 {
 		return "1", "0"
 	}
-	if REVEL_score_float >= 0.183 && REVEL_score_float <= 0.290 {
+	if REVEL_score_float > 0.183 && REVEL_score_float <= 0.290 {
 		return "0", "1"
 	}
 	if REVEL_score_float > 0.016 && REVEL_score_float <= 0.183 {
